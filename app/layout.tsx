@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Montserrat, Poppins } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { Navbar } from '@/components/Navbar';
 import './globals.css';
 
 const montserrat = Montserrat({
@@ -47,6 +48,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={`${montserrat.variable} ${poppins.variable} bg-black`}>
 			<body className="font-sans antialiased">
+				<Navbar />
 				{children}
 				{process.env.NODE_ENV === 'production' && <Analytics />}
 			</body>
