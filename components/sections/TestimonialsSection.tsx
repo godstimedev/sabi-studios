@@ -7,14 +7,14 @@ const testimonials = [
 	{
 		quote:
 			'Sabi Studios transformed our brand story into a cinematic masterpiece. Their attention to detail and deep understanding of cultural storytelling is unmatched. Every frame felt intentional and powerful.',
-		author: 'Adaeze Okonkwo',
-		role: 'Creative Director, Lumina Brands',
+		author: 'Chidinma ',
+		role: 'Head of Media, Bukka Hut Nigeria',
 	},
 	{
 		quote:
-			"Working with Sabi was an incredible experience. They don't just create content—they craft visual narratives that resonate on a human level. Our documentary exceeded every expectation.",
-		author: 'Emeka Nwosu',
-		role: 'Founder, Heritage Films',
+			'Working on the documentary with Sabi Studios was an immersive experience. Being one with an indigenous edge, it had me explore aspects of Project Management I never really engaged with on other projects. The pre-production planning phase to the adaptive onsite execution was well rounded, all thanks to the fast thinking guys at Sabi Studios.',
+		author: 'Eunice Obasun',
+		role: 'Project cordinator, Before the oil documentary project',
 	},
 ];
 

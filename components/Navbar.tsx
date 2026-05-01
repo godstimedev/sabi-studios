@@ -34,7 +34,7 @@ export function Navbar() {
 				{/* Logo */}
 				<Link href="/" className="flex items-center gap-3 shrink-0">
 					<div className="relative w-10 h-10 rounded-lg overflow-hidden">
-						<Image src="/Logo2.png" alt="Sabi Studios" fill className="object-cover" sizes="40px" />
+						<Image src="/images/Logo.png" alt="Sabi Studios" fill className="object-cover" sizes="40px" />
 					</div>
 					<span className="font-(family-name:--font-montserrat) font-bold text-white text-lg tracking-wide">
 						SABI <span className="text-sabi-yellow">STUDIOS</span>

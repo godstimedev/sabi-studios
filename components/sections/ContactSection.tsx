@@ -30,10 +30,22 @@ export function ContactSection() {
 					</p>
 				</div>
 
-				<form className="scroll-animate max-w-xl mx-auto space-y-6">
+				<form
+					action="https://api.web3forms.com/submit"
+					method="POST"
+					className="scroll-animate max-w-xl mx-auto space-y-6"
+				>
+					{/* Replace this value with the Access Key you get from Web3Forms */}
+					<input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+
+					{/* Optional: Add a subject to the email */}
+					<input type="hidden" name="subject" value="New Contact Form Submission - Sabi Studios" />
+
 					<div>
 						<input
 							type="text"
+							name="name"
+							required
 							placeholder="Your Name"
 							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg
                        text-white placeholder:text-sabi-gray/60 focus:outline-none
@@ -43,6 +55,8 @@ export function ContactSection() {
 					<div>
 						<input
 							type="email"
+							name="email"
+							required
 							placeholder="Your Email"
 							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg
                        text-white placeholder:text-sabi-gray/60 focus:outline-none
@@ -51,6 +65,8 @@ export function ContactSection() {
 					</div>
 					<div>
 						<textarea
+							name="message"
+							required
 							rows={5}
 							placeholder="Your Message"
 							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg

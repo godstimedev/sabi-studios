@@ -6,15 +6,15 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const team = [
 	{
 		name: 'James Clement',
-		title: 'Founder & Creative Director',
-		bio: "A visionary filmmaker with over a decade of experience crafting stories that bridge cultures. Seun's work has been featured in international film festivals across three continents.",
-		image: '/Clement.jpeg',
+		title: 'Co-Founder & Creative Team Lead',
+		bio: 'James Clement is a Lagos-based cinematographer and creative director focused on culturally rooted, human-centered storytelling. Drawn to documentary filmmaking by a passion for authenticity, his work explores identity, community, and lived experience across Nigeria. With a quiet, observational style, he creates intimate films that carry emotional depth and give voice to often overlooked stories.',
+		image: '/images/Clement.jpeg',
 	},
 	{
 		name: 'Dewa',
-		title: 'Co-Founder & Head of Production',
+		title: 'Co-Founder & Head of Operations',
 		bio: "Dewa is a wedding, portrait, and editorial photographer based in Ibadan and Lagos, Nigeria, specializing in authoritative storytelling with dramatic chiaroscuro lighting, warm golden tones, and a mission to capture royalty, class, and elegance in every frame — building a legacy as Nigeria's #1 visual artist. 📸🇳🇬",
-		image: '/Dewa.webp',
+		image: '/images/Dewa.webp',
 	},
 ];
 
@@ -47,7 +47,7 @@ export function TeamSection() {
 									src={member.image}
 									alt={member.name}
 									fill
-									className="object-cover"
+									className="object-cover object-top"
 									sizes="(max-width: 768px) 192px, 192px"
 								/>
 							</div>

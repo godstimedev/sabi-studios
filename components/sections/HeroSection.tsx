@@ -3,10 +3,17 @@ import Link from 'next/link';
 export function HeroSection() {
 	return (
 		<section className="relative h-screen flex items-center justify-center overflow-hidden">
-			<div className="absolute inset-0 bg-linear-to-br from-sabi-navy/80 via-sabi-black to-sabi-black" />
-			<div className="absolute inset-0 bg-linear-to-t from-sabi-black via-transparent to-transparent" />
+			{/* Video Background */}
+			<video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+				<source src="/videos/HeroBg.mp4" type="video/mp4" />
+			</video>
 
-			<div className="absolute inset-0 opacity-20">
+			{/* Overlays to blend with the theme and ensure text legibility */}
+			<div className="absolute inset-0 bg-sabi-black/20" />
+			<div className="absolute inset-0 bg-linear-to-t from-sabi-black via-sabi-black/40 to-transparent" />
+			<div className="absolute inset-0 bg-linear-to-r from-sabi-navy/20 to-transparent" />
+
+			<div className="absolute inset-0 opacity-20 pointer-events-none">
 				<div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sabi-yellow/10 rounded-full blur-3xl animate-pulse" />
 				<div
 					className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sabi-cyan/10 rounded-full blur-3xl animate-pulse"
