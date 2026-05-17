@@ -26,15 +26,21 @@ export function Navbar() {
 		<header
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
 				scrolled
-					? 'bg-sabi-black/90 backdrop-blur-md border-b border-sabi-navy/60 py-3'
-					: 'bg-transparent py-5'
+					? 'bg-sabi-black/90 backdrop-blur-md border-b border-sabi-navy/60 py-2'
+					: 'bg-transparent py-4'
 			}`}
 		>
 			<div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 				{/* Logo */}
-				<Link href="/" className="flex items-center gap-3 shrink-0">
-					<div className="relative w-10 h-10 rounded-lg overflow-hidden">
-						<Image src="/images/Logo.png" alt="Sabi Studios" fill className="object-cover" sizes="40px" />
+				<Link href="/" className="flex items-center gap-2 shrink-0">
+					<div className="rounded-lg overflow-hidden">
+						<Image
+							src="/images/SabiLogo.png"
+							alt="Sabi Studios"
+							width={64}
+							height={10}
+							className="object-cover"
+						/>
 					</div>
 					<span className="font-(family-name:--font-montserrat) font-bold text-white text-lg tracking-wide">
 						SABI <span className="text-sabi-yellow">STUDIOS</span>

@@ -64,7 +64,7 @@ export function WorkGrid() {
 				<div className="flex items-end justify-between mb-12">
 					<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white">
 						Selected{' '}
-						<span className="bg-linear-to-r from-sabi-yellow to-sabi-cyan bg-clip-text text-transparent">
+						<span className="text-sabi-yellow">
 							Work
 						</span>
 					</h2>

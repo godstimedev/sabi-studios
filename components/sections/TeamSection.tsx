@@ -26,7 +26,7 @@ export function TeamSection() {
 			<div className="max-w-5xl mx-auto px-6">
 				<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-16">
 					The{' '}
-					<span className="bg-linear-to-r from-sabi-cyan to-sabi-yellow bg-clip-text text-transparent">
+					<span className="text-sabi-yellow">
 						Visionaries
 					</span>
 				</h2>

@@ -10,7 +10,7 @@ export function AboutSection() {
 			<div className="max-w-4xl mx-auto px-6 text-center">
 				<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
 					About{' '}
-					<span className="bg-linear-to-r from-sabi-yellow to-sabi-cyan bg-clip-text text-transparent">
+					<span className="text-sabi-yellow">
 						Sabi Studios
 					</span>
 				</h2>

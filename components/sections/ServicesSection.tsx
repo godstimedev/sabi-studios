@@ -58,7 +58,7 @@ export function ServicesSection() {
 				<div className="text-center mb-16">
 					<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
 						Our{' '}
-						<span className="bg-linear-to-r from-sabi-yellow to-sabi-cyan bg-clip-text text-transparent">
+						<span className="text-sabi-yellow">
 							Services
 						</span>
 					</h2>

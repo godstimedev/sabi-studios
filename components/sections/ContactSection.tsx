@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Send } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { TikTokIcon } from '@/components/icons/TikTokIcon';
@@ -19,11 +20,7 @@ export function ContactSection() {
 			<div className="max-w-4xl mx-auto px-6">
 				<div className="text-center mb-12">
 					<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-						Ready to tell your{' '}
-						<span className="bg-linear-to-r from-sabi-yellow to-sabi-cyan bg-clip-text text-transparent">
-							story
-						</span>
-						?
+						Ready to tell your <span className="text-sabi-yellow">story</span>?
 					</h2>
 					<p className="scroll-animate text-sabi-gray text-lg">
 						{"Let's create something extraordinary together."}
@@ -119,6 +116,20 @@ export function ContactSection() {
 				</div>
 
 				<div className="scroll-animate mt-16 pt-8 border-t border-sabi-navy/50 text-center">
+					<div className="flex items-center justify-center gap-2 mb-4">
+						<div className="rounded-lg overflow-hidden">
+							<Image
+								src="/images/SabiLogo.png"
+								alt="Sabi Studios"
+								width={64}
+								height={10}
+								className="object-cover"
+							/>
+						</div>
+						<span className="font-(family-name:--font-montserrat) font-bold text-white text-lg tracking-wide">
+							SABI <span className="text-sabi-yellow">STUDIOS</span>
+						</span>
+					</div>
 					<p className="text-sabi-gray text-sm">
 						© {new Date().getFullYear()} Sabi Studios. All rights reserved.
 					</p>
