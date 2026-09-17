@@ -1,88 +1,92 @@
 'use client';
 
-import { Film, Camera, Video, Sparkles, Palette, Share2 } from 'lucide-react';
+import { Camera, Film, Palette, Share2, Sparkles, Video } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const services = [
 	{
 		icon: Film,
 		title: 'Documentary & Storytelling',
-		description:
-			'Authentic narratives that capture the essence of human experience and cultural heritage.',
-		iconColor: 'text-sabi-cyan',
-		borderColor: 'border-t-sabi-cyan',
+		description: 'Authentic narratives that capture human experience and cultural heritage.',
 	},
 	{
 		icon: Sparkles,
 		title: 'Branded Content & Commercials',
 		description: 'Strategic visual content that elevates brands and connects with audiences.',
-		iconColor: 'text-sabi-yellow',
-		borderColor: 'border-t-sabi-yellow',
 	},
 	{
 		icon: Camera,
 		title: 'Photography',
-		description: 'Striking imagery that tells stories and captures moments with cinematic precision.',
-		iconColor: 'text-sabi-cyan',
-		borderColor: 'border-t-sabi-cyan',
+		description: 'Striking imagery that tells stories with cinematic precision.',
 	},
 	{
 		icon: Share2,
 		title: 'Content for Digital & Social',
-		description: 'Engaging content optimized for digital platforms and social media engagement.',
-		iconColor: 'text-sabi-yellow',
-		borderColor: 'border-t-sabi-yellow',
+		description: 'Engaging content built for the platforms your audience already lives on.',
 	},
 	{
 		icon: Video,
 		title: 'Video Production',
-		description: 'End-to-end production services delivering high-quality visual content.',
-		iconColor: 'text-sabi-cyan',
-		borderColor: 'border-t-sabi-cyan',
+		description: 'End-to-end production delivering high-quality visual content.',
 	},
 	{
 		icon: Palette,
 		title: 'Creative Direction',
-		description: 'Strategic vision and artistic guidance that shapes compelling visual narratives.',
-		iconColor: 'text-sabi-yellow',
-		borderColor: 'border-t-sabi-yellow',
+		description: 'Strategic vision and artistic guidance that shapes the whole narrative.',
 	},
 ];
 
 export function ServicesSection() {
-	const ref = useScrollAnimation();
+	const ref = useScrollAnimation<HTMLElement>();
 
 	return (
-		<section ref={ref} id="work" className="py-24 md:py-32 bg-sabi-black">
-			<div className="max-w-7xl mx-auto px-6">
-				<div className="text-center mb-16">
-					<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-						Our{' '}
-						<span className="text-sabi-yellow">
-							Services
-						</span>
-					</h2>
-					<p className="scroll-animate text-sabi-gray text-lg max-w-2xl mx-auto">
-						Comprehensive creative solutions tailored to bring your vision to life.
+		<section
+			id="services"
+			ref={ref}
+			className="grain relative overflow-hidden bg-sabi-cobalt py-28 md:py-32"
+		>
+			<div className="relative mx-auto max-w-7xl px-6 lg:px-16">
+				<div className="mb-16 flex flex-col justify-between gap-8 md:flex-row md:items-end">
+					<div>
+						<div className="reveal flex items-center gap-4">
+							<span className="block h-0.5 w-11 bg-sabi-yellow" />
+							<p className="font-sans text-eyebrow uppercase text-sabi-yellow">What we do</p>
+						</div>
+						<h2
+							className="reveal mt-6 font-heading text-headline text-sabi-white"
+							style={{ transitionDelay: '80ms' }}
+						>
+							Content that works.
+						</h2>
+					</div>
+					<p
+						className="reveal max-w-xs font-sans text-base font-light leading-relaxed text-sabi-cobalt-soft"
+						style={{ transitionDelay: '160ms' }}
+					>
+						Six ways we turn a brand&rsquo;s story into visual content people actually stop for.
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{services.map((service, index) => (
+				<div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+					{services.map((service, i) => (
 						<div
 							key={service.title}
-							className={`scroll-animate group p-8 bg-sabi-navy/50 border border-sabi-navy border-t-2 ${service.borderColor} rounded-xl
-                       transition-all duration-300 hover:-translate-y-2 hover:border-sabi-cyan/50
-                       hover:shadow-lg hover:shadow-sabi-cyan/10`}
-							style={{ transitionDelay: `${index * 100}ms` }}
+							className="reveal group relative overflow-hidden rounded-sm border border-sabi-cobalt-soft/20 bg-sabi-cobalt-deep p-9 transition-all duration-500 ease-sabi hover:-translate-y-1.5 hover:border-sabi-yellow/55"
+							style={{ transitionDelay: `${i * 90}ms` }}
 						>
+							<p className="pointer-events-none absolute right-5 top-4 font-display text-6xl leading-none text-sabi-cobalt-soft/15 transition-colors duration-500 group-hover:text-sabi-yellow/30">
+								{String(i + 1).padStart(2, '0')}
+							</p>
+
 							<service.icon
-								className={`w-10 h-10 ${service.iconColor} mb-6 transition-transform duration-300 group-hover:scale-110`}
+								className="h-8 w-8 text-sabi-yellow transition-transform duration-500 ease-sabi group-hover:scale-110"
+								strokeWidth={1.7}
 							/>
-							<h3 className="font-(family-name:--font-montserrat) text-xl font-bold text-white mb-3">
-								{service.title}
-							</h3>
-							<p className="text-sabi-gray leading-relaxed">{service.description}</p>
+
+							<h3 className="mt-7 font-heading text-title text-sabi-white">{service.title}</h3>
+							<p className="mt-3 font-sans text-sm font-light leading-relaxed text-sabi-cobalt-soft">
+								{service.description}
+							</p>
 						</div>
 					))}
 				</div>

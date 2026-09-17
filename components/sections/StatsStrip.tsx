@@ -1,28 +1,62 @@
 'use client';
 
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useCountUp } from '@/hooks/useCountUp';
 
 const stats = [
-	{ number: '20+', label: 'Brands Elevated' },
-	{ number: '100+', label: 'Productions' },
-	{ number: '2+', label: 'Countries' },
-	{ number: '100%', label: 'Culture-Driven' },
+	{ target: 20, suffix: '+', label: 'Brands elevated' },
+	{ target: 100, suffix: '+', label: 'Productions' },
+	{ target: 2, suffix: '', label: 'Countries' },
+	{ target: 100, suffix: '%', label: 'Culture-driven' },
 ];
 
-export function StatsStrip() {
-	const ref = useScrollAnimation();
+function Stat({
+	target,
+	suffix,
+	label,
+	delay,
+}: {
+	target: number;
+	suffix: string;
+	label: string;
+	delay: number;
+}) {
+	const { ref, value } = useCountUp(target, 1800 + delay);
 
 	return (
-		<section ref={ref} className="py-16 border-y border-sabi-navy/50 bg-sabi-navy/10">
-			<div className="max-w-5xl mx-auto px-6">
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+		<div ref={ref as React.RefObject<HTMLDivElement>}>
+			{/*
+			 * The live number is aria-hidden and a static, complete label sits
+			 * beside it — otherwise screen readers announce every tick.
+			 */}
+			{/* tabular-nums stops the width jumping as the digits tick up. */}
+			<p
+				aria-hidden="true"
+				className="font-display text-5xl leading-none tabular-nums text-sabi-yellow md:text-6xl"
+			>
+				{value}
+				{suffix}
+			</p>
+			<p className="sr-only">{`${target}${suffix} ${label}`}</p>
+			<p aria-hidden="true" className="mt-4 font-sans text-eyebrow uppercase text-white/70">
+				{label}
+			</p>
+		</div>
+	);
+}
+
+export function StatsStrip() {
+	return (
+		<section className="grain relative overflow-hidden bg-sabi-black py-20">
+			<div className="relative mx-auto max-w-7xl px-6 lg:px-16">
+				<div className="grid grid-cols-2 gap-10 md:grid-cols-4">
 					{stats.map((stat, i) => (
-						<div key={stat.label} className="scroll-animate" style={{ transitionDelay: `${i * 100}ms` }}>
-							<p className="font-(family-name:--font-montserrat) text-5xl md:text-6xl font-black bg-linear-to-r from-sabi-yellow to-sabi-cyan bg-clip-text text-transparent">
-								{stat.number}
-							</p>
-							<p className="text-sabi-gray text-xs mt-3 uppercase tracking-widest">{stat.label}</p>
-						</div>
+						<Stat
+							key={stat.label}
+							target={stat.target}
+							suffix={stat.suffix}
+							label={stat.label}
+							delay={i * 120}
+						/>
 					))}
 				</div>
 			</div>

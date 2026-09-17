@@ -1,188 +1,307 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:is(.dark *));
-
-:root {
-	/* Sabi Studios Color System */
-	--background: #000000;
-	--foreground: #ffffff;
-	--card: #0b1e3a;
-	--card-foreground: #ffffff;
-	--popover: #0b1e3a;
-	--popover-foreground: #ffffff;
-	--primary: #ffd43b;
-	--primary-foreground: #000000;
-	--secondary: #2ec4c7;
-	--secondary-foreground: #000000;
-	--muted: #0b1e3a;
-	--muted-foreground: #9ca3af;
-	--accent: #2ec4c7;
-	--accent-foreground: #000000;
-	--destructive: oklch(0.577 0.245 27.325);
-	--destructive-foreground: oklch(0.577 0.245 27.325);
-	--border: #0b1e3a;
-	--input: #0b1e3a;
-	--ring: #ffd43b;
-	--radius: 0.5rem;
-
-	/* Custom Colors */
-}
+/*
+ * Sabi Studios — "Aperture" design system
+ * Palette, typography and motion derived from Brand Guidelines v1.
+ *
+ * Colour rules that are NOT negotiable (contrast-computed):
+ *   - Pumpkin Orange fields take BLACK type only (white 3.18:1, yellow 2.25:1 both fail)
+ *   - Sabi Yellow fields take BLACK type only (white 1.41:1 fails)
+ */
 
 @theme {
-	--font-sans: var(--font-poppins), 'Poppins', system-ui, sans-serif;
-	--font-heading: var(--font-montserrat), 'Montserrat', system-ui, sans-serif;
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--color-card: var(--card);
-	--color-card-foreground: var(--card-foreground);
-	--color-popover: var(--popover);
-	--color-popover-foreground: var(--popover-foreground);
-	--color-primary: var(--primary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-secondary: var(--secondary);
-	--color-secondary-foreground: var(--secondary-foreground);
-	--color-muted: var(--muted);
-	--color-muted-foreground: var(--muted-foreground);
-	--color-accent: var(--accent);
-	--color-accent-foreground: var(--accent-foreground);
-	--color-destructive: var(--destructive);
-	--color-destructive-foreground: var(--destructive-foreground);
-	--color-border: var(--border);
-	--color-input: var(--input);
-	--color-ring: var(--ring);
-	--radius-sm: calc(var(--radius) - 4px);
-	--radius-md: calc(var(--radius) - 2px);
-	--radius-lg: var(--radius);
-	--radius-xl: calc(var(--radius) + 4px);
+	/* ---- Brand colours (exact, from the guideline) ---- */
+	--color-sabi-yellow: #ffd600;
+	--color-sabi-yellow-deep: #4a3e00;
+	--color-sabi-yellow-soft: #ffec80;
 
-	/* Sabi Studios Custom Colors */
+	--color-sabi-orange: #f16514;
+	--color-sabi-orange-deep: #5c2405;
+	--color-sabi-orange-soft: #fbc49b;
+
+	--color-sabi-cobalt: #004aad;
+	--color-sabi-cobalt-deep: #00224f;
+	--color-sabi-cobalt-soft: #9dbae4;
+
+	--color-sabi-red: #ad0c0c;
+	--color-sabi-red-deep: #3d0404;
+	--color-sabi-red-soft: #e89090;
+
+	/* ---- Neutrals ---- */
+	--color-sabi-white: #ffffff;
+	--color-sabi-paper: #f4f4f4;
+	--color-sabi-mist: #d4d4d4;
+	--color-sabi-gray: #6b6b6b;
+	--color-sabi-ink: #1f1f1f;
+	--color-sabi-ink-deep: #0a0a0a;
 	--color-sabi-black: #000000;
-	--color-sabi-yellow: #ffd43b;
-	--color-sabi-cyan: #2ec4c7;
-	--color-sabi-navy: #0b1e3a;
-	--color-sabi-gray: #9ca3af;
 
-	/* Custom Animations */
-	--animate-marquee: marquee 10s linear infinite;
+	/* ---- Type scale (fluid, editorial) ---- */
+	--text-eyebrow: 0.75rem;
+	--text-eyebrow--line-height: 1.4;
+	--text-eyebrow--letter-spacing: 0.22em;
+	--text-eyebrow--font-weight: 600;
+
+	--text-display: clamp(2.75rem, 8.5vw, 7.25rem);
+	--text-display--line-height: 0.94;
+	--text-display--letter-spacing: -0.035em;
+	--text-display--font-weight: 900;
+
+	--text-headline: clamp(2.25rem, 5vw, 3.625rem);
+	--text-headline--line-height: 1;
+	--text-headline--letter-spacing: -0.03em;
+	--text-headline--font-weight: 800;
+
+	--text-title: clamp(1.125rem, 1.6vw, 1.375rem);
+	--text-title--line-height: 1.28;
+	--text-title--letter-spacing: -0.02em;
+	--text-title--font-weight: 700;
+
+	--text-lead: 1.1875rem;
+	--text-lead--line-height: 1.7;
+
+	--text-statement: 1.4375rem;
+	--text-statement--line-height: 1.6;
+
+	--text-quote: 2.0625rem;
+	--text-quote--line-height: 1.42;
+	--text-quote--letter-spacing: -0.015em;
+
+	--text-body: 0.9375rem;
+	--text-body--line-height: 1.7;
+
+	--text-meta: 0.8125rem;
+	--text-meta--line-height: 1.6;
+
+	--text-micro: 0.6875rem;
+	--text-micro--line-height: 1.4;
+	--text-micro--font-weight: 600;
+
+	/* ---- Tracking ---- */
+	--tracking-eyebrow: 0.22em;
+	--tracking-label: 0.16em;
+
+	/* ---- Shadows ---- */
+	--shadow-yellow-lift: 0 14px 34px rgb(255 214 0 / 0.32);
+
+	/* ---- Motion ---- */
+	--ease-sabi: cubic-bezier(0.22, 1, 0.36, 1);
+	--animate-marquee: sabi-marquee 34s linear infinite;
+
+	@keyframes sabi-marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+}
+
+/*
+ * Fonts MUST live in `@theme inline`. With a plain `@theme`, the
+ * `var(--font-*)` is substituted at :root — which only resolves while the
+ * next/font classes happen to sit on <html>. Inline defers substitution to
+ * the element wearing the utility, so it keeps working wherever they move.
+ */
+@theme inline {
+	--font-sans: var(--font-poppins), system-ui, sans-serif;
+	--font-heading: var(--font-montserrat), system-ui, sans-serif;
+	--font-display: var(--font-archivo), system-ui, sans-serif;
+	--font-display--font-variation-settings: 'wdth' 125;
+}
+
+/* ---------- Custom utilities ----------
+ * For values with no standard Tailwind equivalent. Prefer these over
+ * arbitrary `[...]` values so the design stays token-driven.
+ */
+
+/*
+ * The navbar is sticky and therefore still in flow, so a full-viewport hero
+ * has to subtract its height or it overflows the fold.
+ */
+@utility hero-frame {
+	min-height: calc(100dvh - var(--nav-height));
+}
+
+@utility hero-frame-locked {
+	height: calc(100dvh - var(--nav-height));
+}
+
+/* Hero colour grade: yellow key from the upper left, cobalt fill lower right. */
+@utility hero-key-light {
+	background-image: radial-gradient(
+		48% 42% at 8% 28%,
+		rgb(255 214 0 / 0.09) 0%,
+		transparent 65%
+	);
+}
+
+@utility hero-fill-light {
+	background-image: radial-gradient(
+		55% 50% at 90% 80%,
+		rgb(0 74 173 / 0.26) 0%,
+		transparent 65%
+	);
+}
+
+/* Work-grid row height — `auto-rows-*` has no spacing-scale namespace. */
+@utility auto-rows-tile {
+	grid-auto-rows: 18rem;
+}
+
+/* Duotone reveal and portrait hovers animate filter + transform together. */
+@utility transition-visual {
+	transition-property: filter, transform;
 }
 
 @layer base {
-	* {
-		@apply border-border outline-ring/50;
+	:root {
+		--nav-height: 5rem;
 	}
+
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-sabi-black text-sabi-white font-sans antialiased;
+	}
+
+	::selection {
+		@apply bg-sabi-yellow text-sabi-black;
+	}
+
+	/*
+	 * Tailwind v4's preflight sets buttons to `cursor: default`, which makes
+	 * every button feel inert. Restore the pointer for anything interactive.
+	 */
+	button:not(:disabled),
+	[role='button']:not(:disabled),
+	label[for],
+	summary {
+		cursor: pointer;
+	}
+
+	button:disabled {
+		cursor: not-allowed;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--color-sabi-yellow);
+		outline-offset: 3px;
+	}
+
+	/*
+	 * Next 16 no longer overrides scroll-behavior on navigation. The
+	 * data-scroll-behavior="smooth" attribute on <html> restores the override
+	 * so route changes jump instantly while in-page anchors stay smooth.
+	 */
+	html {
+		scroll-behavior: smooth;
 	}
 }
 
-/* Custom Animations */
-@keyframes fadeInUp {
-	from {
+/* ---------- Scroll reveal ----------
+ * Driven by hooks/useScrollAnimation.ts (IntersectionObserver, fires once).
+ * A <noscript> override in app/layout.tsx forces these visible when JS is
+ * off, so content is never stranded invisible.
+ */
+@layer utilities {
+	.reveal {
 		opacity: 0;
-		transform: translateY(30px);
+		transform: translateY(26px);
 	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
 
-@keyframes fadeIn {
-	from {
+	.reveal-scale {
 		opacity: 0;
+		transform: scale(0.97);
 	}
-	to {
+
+	.reveal,
+	.reveal-scale {
+		transition:
+			opacity 0.7s var(--ease-sabi),
+			transform 0.7s var(--ease-sabi);
+		will-change: opacity, transform;
+	}
+
+	.reveal.is-visible,
+	.reveal-scale.is-visible {
 		opacity: 1;
+		transform: none;
+		will-change: auto;
+	}
+
+	/* On-load entrance, used by the hero. Stagger with inline animationDelay. */
+	.rise {
+		animation: sabi-rise 0.9s var(--ease-sabi) both;
+	}
+
+	@keyframes sabi-rise {
+		from {
+			opacity: 0;
+			transform: translateY(28px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	/* Film grain over flat colour fields — CSS only, no asset request. */
+	.grain::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: 0.5;
+		background-image:
+			radial-gradient(rgba(255, 255, 255, 0.1) 0.5px, transparent 0.5px),
+			radial-gradient(rgba(0, 0, 0, 0.1) 0.5px, transparent 0.5px);
+		background-size:
+			3px 3px,
+			4px 4px;
+		background-position:
+			0 0,
+			1px 2px;
+	}
+
+	.grain-dark::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: 0.45;
+		background-image: radial-gradient(rgba(0, 0, 0, 0.13) 0.5px, transparent 0.5px);
+		background-size: 3px 3px;
 	}
 }
 
-@keyframes slideInLeft {
-	from {
-		opacity: 0;
-		transform: translateX(-30px);
+/* ---------- Reduced motion ----------
+ * Everything decorative stops. Revealed content is forced visible so nothing
+ * becomes unreachable, and the marquee parks rather than disappearing.
+ */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
 	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
+
+	.reveal,
+	.reveal-scale {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
 	}
-}
 
-@keyframes slideInRight {
-	from {
-		opacity: 0;
-		transform: translateX(30px);
+	.rise {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
 	}
-	to {
-		opacity: 1;
-		transform: translateX(0);
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
 	}
-}
-
-.animate-fade-in-up {
-	animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-fade-in {
-	animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-slide-in-left {
-	animation: slideInLeft 0.8s ease-out forwards;
-}
-
-.animate-slide-in-right {
-	animation: slideInRight 0.8s ease-out forwards;
-}
-
-.animation-delay-100 {
-	animation-delay: 100ms;
-}
-
-.animation-delay-200 {
-	animation-delay: 200ms;
-}
-
-.animation-delay-300 {
-	animation-delay: 300ms;
-}
-
-.animation-delay-400 {
-	animation-delay: 400ms;
-}
-
-.animation-delay-500 {
-	animation-delay: 500ms;
-}
-
-.animation-delay-600 {
-	animation-delay: 600ms;
-}
-
-/* Scroll Animation Classes */
-.scroll-animate {
-	opacity: 0;
-	transform: translateY(30px);
-	transition:
-		opacity 0.6s ease-out,
-		transform 0.6s ease-out;
-}
-
-.scroll-animate.animate {
-	opacity: 1;
-	transform: translateY(0);
-}
-
-/* Marquee */
-@keyframes marquee {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-50%);
-	}
-}
-
-/* Smooth scroll */
-html {
-	scroll-behavior: smooth;
 }
