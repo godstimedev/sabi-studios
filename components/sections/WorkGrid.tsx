@@ -116,18 +116,27 @@ export function WorkGrid() {
 							className={`reveal-scale group relative block overflow-hidden rounded-xs bg-sabi-black ${project.span}`}
 							style={{ transitionDelay: `${i * 80}ms` }}
 						>
+							{/*
+							 * The duotone-at-rest treatment is a hover reveal, and
+							 * group-hover only fires under @media (hover: hover) —
+							 * Tailwind adds that guard automatically, so touch devices
+							 * can never trigger it. Both the desaturated image and the
+							 * tint overlay below are gated to pointer-fine (mouse/
+							 * trackpad); touch gets the photo in full colour, untinted,
+							 * from the start.
+							 */}
 							<Image
 								src={project.image}
 								alt={project.title}
 								fill
 								sizes={project.sizes}
 								placeholder="blur"
-								className="object-cover grayscale contrast-125 brightness-90 transition-visual duration-700 ease-sabi group-hover:scale-105 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100"
+								className="object-cover transition-visual duration-700 ease-sabi pointer-fine:grayscale pointer-fine:contrast-125 pointer-fine:brightness-90 group-hover:scale-105 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100"
 							/>
 
 							{/* mix-blend-color over a desaturated image = a true duotone. */}
 							<span
-								className={`pointer-events-none absolute inset-0 opacity-90 mix-blend-color transition-opacity duration-700 ease-sabi group-hover:opacity-0 ${project.tint}`}
+								className={`pointer-events-none absolute inset-0 opacity-90 mix-blend-color transition-opacity duration-700 ease-sabi pointer-coarse:opacity-0 group-hover:opacity-0 ${project.tint}`}
 							/>
 							<span className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/85 via-transparent to-transparent" />
 

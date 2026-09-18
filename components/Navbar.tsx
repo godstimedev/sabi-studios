@@ -1,10 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import logoMark from '@/public/images/SabiMark.png';
+import { LogoLink } from '@/components/LogoLink';
 
 const navLinks = [
 	{ label: 'About', href: '#about' },
@@ -25,17 +24,7 @@ export function Navbar() {
 	return (
 		<header className="sticky top-0 z-50 border-b border-white/10 bg-sabi-black/85 backdrop-blur-lg">
 			<div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-16">
-				{/* Navigates to #hero so it replaces whatever hash is already in the URL. */}
-				<Link
-					href="#hero"
-					className="flex shrink-0 items-center gap-3"
-					aria-label="Sabi Studios — back to top"
-				>
-					<Image src={logoMark} alt="" aria-hidden="true" width={36} height={36} priority />
-					<span className="font-heading text-lg font-bold tracking-tight text-sabi-white">
-						SABI <span className="text-sabi-yellow">STUDIOS</span>
-					</span>
-				</Link>
+				<LogoLink className="flex shrink-0 items-center gap-3" priority />
 
 				<nav className="hidden items-center gap-9 lg:flex">
 					{navLinks.map((link) => (

@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import logoMark from '@/public/images/SabiMark.png';
+import { LogoLink } from '@/components/LogoLink';
 
 const columns = [
 	[
@@ -32,12 +31,7 @@ export function Footer() {
 			<div className="relative mx-auto max-w-7xl px-6 lg:px-16">
 				<div className="flex flex-wrap justify-between gap-12">
 					<div>
-						<div className="flex items-center gap-3">
-							<Image src={logoMark} alt="" aria-hidden="true" width={36} height={36} />
-							<span className="font-heading text-lg font-bold tracking-tight text-sabi-white">
-								SABI <span className="text-sabi-yellow">STUDIOS</span>
-							</span>
-						</div>
+						<LogoLink className="flex items-center gap-3" />
 						<p className="mt-5 max-w-64 font-sans text-sm font-light text-sabi-gray">
 							We Sabi Visuals. You Sabi Win.
 						</p>

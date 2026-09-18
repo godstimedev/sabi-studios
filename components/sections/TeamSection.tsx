@@ -49,13 +49,20 @@ export function TeamSection() {
 					{team.map((member, i) => (
 						<div key={member.name} className="reveal group" style={{ transitionDelay: `${i * 140}ms` }}>
 							<div className="relative h-120 w-full overflow-hidden rounded-xs bg-sabi-paper">
+								{/*
+								 * grayscale-at-rest is a hover reveal, and group-hover only
+								 * fires under @media (hover: hover) — Tailwind adds that
+								 * guard automatically. Touch devices can never trigger it, so
+								 * the desaturated look is gated to pointer-fine (mouse/
+								 * trackpad) devices and touch just gets the photo in colour.
+								 */}
 								<Image
 									src={member.image}
 									alt={member.name}
 									fill
 									sizes="(min-width: 768px) 50vw, 100vw"
 									placeholder="blur"
-									className="object-cover object-top grayscale contrast-125 transition-visual duration-700 ease-sabi group-hover:scale-105 group-hover:grayscale-0 group-hover:contrast-100"
+									className="object-cover object-top transition-visual duration-700 ease-sabi pointer-fine:grayscale pointer-fine:contrast-125 group-hover:scale-105 group-hover:grayscale-0 group-hover:contrast-100"
 								/>
 							</div>
 
