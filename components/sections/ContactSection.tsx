@@ -1,138 +1,191 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Send } from 'lucide-react';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { TikTokIcon } from '@/components/icons/TikTokIcon';
+import { useState } from 'react';
+import { Loader2, Send } from 'lucide-react';
 import { InstagramIcon } from '@/components/icons/InstagramIcon';
+import { TikTokIcon } from '@/components/icons/TikTokIcon';
 import { XIcon } from '@/components/icons/XIcon';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+
+const socials = [
+	{ label: 'Instagram', href: 'https://instagram.com/sabicreativestudios', Icon: InstagramIcon },
+	{ label: 'TikTok', href: 'https://tiktok.com/@sabistudiosng', Icon: TikTokIcon },
+	{ label: 'X', href: 'https://x.com/sabistudiosng', Icon: XIcon },
+];
+
+type Status = 'idle' | 'sending' | 'sent' | 'error';
 
 export function ContactSection() {
-	const ref = useScrollAnimation();
+	const ref = useScrollAnimation<HTMLElement>();
+	const [status, setStatus] = useState<Status>('idle');
+
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const form = event.currentTarget;
+		setStatus('sending');
+
+		try {
+			const response = await fetch('https://api.web3forms.com/submit', {
+				method: 'POST',
+				headers: { Accept: 'application/json' },
+				body: new FormData(form),
+			});
+
+			if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+
+			setStatus('sent');
+			form.reset();
+		} catch {
+			setStatus('error');
+		}
+	}
 
 	return (
-		<section
-			ref={ref}
-			id="contact"
-			className="py-24 md:py-32 bg-linear-to-t from-sabi-navy/30 to-sabi-black"
-		>
-			<div className="max-w-4xl mx-auto px-6">
-				<div className="text-center mb-12">
-					<h2 className="scroll-animate font-(family-name:--font-montserrat) text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-						Ready to tell your <span className="text-sabi-yellow">story</span>?
-					</h2>
-					<p className="scroll-animate text-sabi-gray text-lg">
-						{"Let's create something extraordinary together."}
-					</p>
-				</div>
+		<section id="contact" ref={ref} className="grain relative overflow-hidden bg-sabi-red">
+			{/* ---- Brand promise ---- */}
+			<div className="relative mx-auto max-w-7xl px-6 pb-24 pt-28 text-center lg:px-16">
+				<p className="reveal font-sans text-eyebrow uppercase text-sabi-yellow">Our brand promise</p>
 
-				<form
-					action="https://api.web3forms.com/submit"
-					method="POST"
-					className="scroll-animate max-w-xl mx-auto space-y-6"
+				<h2
+					className="reveal mx-auto mt-8 max-w-4xl font-heading text-display text-sabi-white"
+					style={{ transitionDelay: '80ms' }}
 				>
-					{/* Replace this value with the Access Key you get from Web3Forms */}
-					<input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+					Does this help
+					<br />
+					the client <span className="text-sabi-yellow">win?</span>
+				</h2>
 
-					{/* Optional: Add a subject to the email */}
-					<input type="hidden" name="subject" value="New Contact Form Submission - Sabi Studios" />
+				<p
+					className="reveal mx-auto mt-8 max-w-xl font-sans text-lg font-light leading-relaxed text-white/90"
+					style={{ transitionDelay: '160ms' }}
+				>
+					Creative excellence. Professional execution. Visual storytelling that delivers results.
+					Every project gets measured against that one question.
+				</p>
+			</div>
 
-					<div>
+			<div className="relative h-px bg-white/25" />
+
+			{/* ---- Contact ---- */}
+			<div className="relative mx-auto max-w-7xl px-6 pb-28 pt-24 lg:px-16">
+				<div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+					<div className="lg:col-span-5">
+						<h2 className="reveal font-heading text-headline text-sabi-white">
+							Ready to tell
+							<br />
+							your story?
+						</h2>
+
+						<p
+							className="reveal mt-6 max-w-sm font-sans text-base font-light leading-relaxed text-white/90"
+							style={{ transitionDelay: '80ms' }}
+						>
+							Tell us what you&rsquo;re building. We&rsquo;ll tell you how we&rsquo;d shoot it.
+						</p>
+
+						<div className="reveal mt-11 flex gap-3" style={{ transitionDelay: '160ms' }}>
+							{socials.map(({ label, href, Icon }) => (
+								<a
+									key={label}
+									href={href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={label}
+									className="flex h-12 w-12 items-center justify-center rounded-full border border-white/35 text-sabi-white transition duration-300 ease-sabi hover:-translate-y-0.5 hover:border-sabi-yellow hover:bg-sabi-yellow hover:text-sabi-black"
+								>
+									<Icon className="size-4.5" />
+								</a>
+							))}
+						</div>
+					</div>
+
+					<form
+						onSubmit={handleSubmit}
+						className="reveal lg:col-span-7"
+						style={{ transitionDelay: '120ms' }}
+					>
 						<input
-							type="text"
-							name="name"
-							required
-							placeholder="Your Name"
-							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg
-                       text-white placeholder:text-sabi-gray/60 focus:outline-none
-                       focus:border-sabi-cyan transition-colors duration-300"
+							type="hidden"
+							name="access_key"
+							value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? ''}
 						/>
-					</div>
-					<div>
-						<input
-							type="email"
-							name="email"
-							required
-							placeholder="Your Email"
-							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg
-                       text-white placeholder:text-sabi-gray/60 focus:outline-none
-                       focus:border-sabi-cyan transition-colors duration-300"
-						/>
-					</div>
-					<div>
-						<textarea
-							name="message"
-							required
-							rows={5}
-							placeholder="Your Message"
-							className="w-full px-6 py-4 bg-sabi-navy/50 border border-sabi-navy rounded-lg
-                       text-white placeholder:text-sabi-gray/60 focus:outline-none
-                       focus:border-sabi-cyan transition-colors duration-300 resize-none"
-						/>
-					</div>
-					<button
-						type="submit"
-						className="w-full px-8 py-4 bg-sabi-yellow text-sabi-black font-semibold rounded-lg
-                     transition-all duration-300 hover:scale-[1.02] hover:shadow-lg
-                     hover:shadow-sabi-yellow/25 flex items-center justify-center gap-2"
-					>
-						<Send className="w-5 h-5" />
-						Send Message
-					</button>
-				</form>
+						<input type="hidden" name="subject" value="New enquiry from sabistudiosng.com" />
 
-				<div className="scroll-animate mt-16 flex items-center justify-center gap-6">
-					<Link
-						href="https://www.instagram.com/sabicreativestudios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="p-3 border border-sabi-navy rounded-full text-sabi-gray
-                     transition-all duration-300 hover:border-sabi-cyan hover:text-sabi-cyan
-                     hover:scale-110"
-					>
-						<InstagramIcon className="w-6 h-6" />
-					</Link>
-					<Link
-						href="https://www.tiktok.com/@sabistudiosng"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="p-3 border border-sabi-navy rounded-full text-sabi-gray
-                     transition-all duration-300 hover:border-sabi-cyan hover:text-sabi-cyan
-                     hover:scale-110"
-					>
-						<TikTokIcon className="w-6 h-6" />
-					</Link>
-					<Link
-						href="https://x.com/sabistudiosng"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="p-3 border border-sabi-navy rounded-full text-sabi-gray
-                     transition-all duration-300 hover:border-sabi-cyan hover:text-sabi-cyan
-                     hover:scale-110"
-					>
-						<XIcon className="w-6 h-6" />
-					</Link>
-				</div>
+						<div className="grid gap-5 sm:grid-cols-2">
+							<div>
+								<label htmlFor="name" className="mb-2.5 block font-sans text-eyebrow uppercase text-white/85">
+									Name
+								</label>
+								<input
+									id="name"
+									name="name"
+									type="text"
+									required
+									placeholder="Your name"
+									className="w-full rounded-xs border border-white/30 bg-black/25 px-4 py-3.5 font-sans text-body font-light text-sabi-white transition placeholder:text-white/55 focus:border-sabi-yellow focus:bg-black/40 focus:outline-none"
+								/>
+							</div>
+							<div>
+								<label htmlFor="email" className="mb-2.5 block font-sans text-eyebrow uppercase text-white/85">
+									Email
+								</label>
+								<input
+									id="email"
+									name="email"
+									type="email"
+									required
+									placeholder="you@brand.com"
+									className="w-full rounded-xs border border-white/30 bg-black/25 px-4 py-3.5 font-sans text-body font-light text-sabi-white transition placeholder:text-white/55 focus:border-sabi-yellow focus:bg-black/40 focus:outline-none"
+								/>
+							</div>
+						</div>
 
-				<div className="scroll-animate mt-16 pt-8 border-t border-sabi-navy/50 text-center">
-					<div className="flex items-center justify-center gap-2 mb-4">
-						<div className="rounded-lg overflow-hidden">
-							<Image
-								src="/images/SabiLogo.png"
-								alt="Sabi Studios"
-								width={64}
-								height={10}
-								className="object-cover"
+						<div className="mt-5">
+							<label htmlFor="message" className="mb-2.5 block font-sans text-eyebrow uppercase text-white/85">
+								Project
+							</label>
+							<textarea
+								id="message"
+								name="message"
+								rows={5}
+								required
+								placeholder="What are we making?"
+								className="w-full resize-y rounded-xs border border-white/30 bg-black/25 px-4 py-3.5 font-sans text-body font-light text-sabi-white transition placeholder:text-white/55 focus:border-sabi-yellow focus:bg-black/40 focus:outline-none"
 							/>
 						</div>
-						<span className="font-(family-name:--font-montserrat) font-bold text-white text-lg tracking-wide">
-							SABI <span className="text-sabi-yellow">STUDIOS</span>
-						</span>
-					</div>
-					<p className="text-sabi-gray text-sm">
-						© {new Date().getFullYear()} Sabi Studios. All rights reserved.
-					</p>
+
+						<button
+							type="submit"
+							disabled={status === 'sending'}
+							className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xs bg-sabi-yellow px-7 py-4 font-heading text-sm font-bold text-sabi-black transition duration-300 ease-sabi hover:-translate-y-0.5 hover:shadow-yellow-lift disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+						>
+							{status === 'sending' ? (
+								<>
+									Sending
+									<Loader2 className="h-4 w-4 animate-spin" />
+								</>
+							) : (
+								<>
+									Send it
+									<Send className="h-4 w-4" />
+								</>
+							)}
+						</button>
+
+						{/* aria-live so the outcome is announced, not just shown. */}
+						<p aria-live="polite" className="mt-4 min-h-6 font-sans text-sm font-light">
+							{status === 'sent' && (
+								<span className="text-sabi-yellow">
+									Message sent. We&rsquo;ll get back to you shortly.
+								</span>
+							)}
+							{status === 'error' && (
+								<span className="text-white">
+									Something went wrong. Email us directly and we&rsquo;ll pick it up.
+								</span>
+							)}
+						</p>
+					</form>
 				</div>
 			</div>
 		</section>
